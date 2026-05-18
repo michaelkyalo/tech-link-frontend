@@ -1,4 +1,4 @@
-import useCart from "../../hooks/useCart";
+import useCart from "../../hooks/usecart";
 import { formatCurrency } from "../../utils/helpers";
 
 const ProductCard = ({ product }) => {

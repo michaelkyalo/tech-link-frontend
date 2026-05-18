@@ -7,7 +7,7 @@ import {
   getChats,
   getMessages,
   sendMessage,
-} from "../../services/chatService";
+} from "../../services/chatservice";
 
 import useAuth from "../../hooks/useAuth";
 

@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { getFromStorage, saveToStorage, removeFromStorage } from "../utils/storage";
-import { loginUser, registerUser } from "../services/authServices";
+import { loginUser, registerUser } from "../services/authService";
 
 export const AuthContext = createContext();
 

@@ -7,7 +7,7 @@ import FarmerDashboard from "../pages/farmer/FarmerDashboard";
 import Products from "../pages/buyer/Products";
 import Cart from "../pages/buyer/Cart";
 import Orders from "../pages/buyer/Orders";
-import ChatPage from "../pages/chat/ChatPage";
+import ChatPage from "../pages/chat/chatPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes = () => {

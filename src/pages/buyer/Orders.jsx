@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOrders } from "../../services/orderService";
+import { getOrders } from "../../services/orderservice";
 import OrderCard from "../../components/cards/OrderCard";
 
 const Orders = () => {
