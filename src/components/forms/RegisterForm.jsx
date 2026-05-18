@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 const RegisterForm = () => {
-  const { register } = useAuth();
+  const register  = useAuth();
 
   const [form, setForm] = useState({
     name: "",

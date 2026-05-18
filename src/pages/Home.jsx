@@ -2,84 +2,113 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3f6f4] text-gray-900">
       {/* Hero Section */}
-      <section className="bg-green-700 text-white py-20 px-6 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Welcome to AgriLink 
-        </h1>
+      <section className="bg-[#2F5D50] text-white py-24 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="uppercase tracking-[4px] text-sm text-green-200 mb-4">
+            Fresh • Local • Trusted
+          </p>
 
-        <p className="text-lg md:text-xl max-w-2xl mx-auto">
-          A digital marketplace connecting farmers and buyers directly for fresh,
-          affordable agricultural products.
-        </p>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+            Welcome to AgriLink
+          </h1>
 
-        <div className="mt-6 flex justify-center gap-4">
-          <Link
-            to="/products"
-            className="bg-white text-green-700 px-6 py-3 rounded font-semibold"
-          >
-            Browse Products
-          </Link>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-green-50 leading-relaxed text-center">
+            A modern agricultural marketplace connecting farmers and buyers
+            directly for fresh, affordable, and high-quality farm products.
+          </p>
 
-          <Link
-            to="/register"
-            className="border border-white px-6 py-3 rounded font-semibold"
-          >
-            Get Started
-          </Link>
+          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+            <Link
+              to="/products"
+              className="bg-white text-[#2F5D50] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition"
+            >
+              Browse Products
+            </Link>
+
+            <Link
+              to="/register"
+              className="border border-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-[#2F5D50] transition"
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 px-6 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <div className="bg-white p-6 rounded shadow text-center">
-          <h2 className="text-xl font-bold mb-2">
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+          {/* Farmers */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition text-center">
+            <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+              
+            </div>
+
+            <h2 className="text-2xl font-bold mb-3 text-[#2F5D50]">
               Farmers
-          </h2>
+            </h2>
 
-          <p>
-            Sell your fresh produce directly to buyers without middlemen.
-          </p>
-        </div>
+            <p className="text-gray-600 leading-relaxed">
+              Sell fresh produce directly to buyers without middlemen and grow
+              your farming business sustainably.
+            </p>
+          </div>
 
-        <div className="bg-white p-6 rounded shadow text-center">
-          <h2 className="text-xl font-bold mb-2">
+          {/* Buyers */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition text-center">
+            <div className="w-14 h-14 bg-[#EFE3D2] rounded-full flex items-center justify-center mx-auto mb-5">
+              
+            </div>
+
+            <h2 className="text-2xl font-bold mb-3 text-[#2F5D50]">
               Buyers
-          </h2>
+            </h2>
 
-          <p>
-            Get fresh farm products at affordable prices directly from farmers.
-          </p>
-        </div>
+            <p className="text-gray-600 leading-relaxed">
+              Access affordable farm-fresh products directly from trusted local
+              farmers.
+            </p>
+          </div>
 
-        <div className="bg-white p-6 rounded shadow text-center">
-          <h2 className="text-xl font-bold mb-2">
-             Fast Delivery
-          </h2>
+          {/* Delivery */}
+          <div className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition text-center">
+            <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+              
+            </div>
 
-          <p>
-            Efficient delivery system ensures fresh products reach you quickly.
-          </p>
+            <h2 className="text-2xl font-bold mb-3 text-[#2F5D50]">
+              Fast Delivery
+            </h2>
+
+            <p className="text-gray-600 leading-relaxed">
+              Efficient delivery ensures products arrive fresh, quickly, and
+              safely to your doorstep.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-green-100 py-16 text-center">
-        <h2 className="text-3xl font-bold mb-4">
-          Start Trading Today
-        </h2>
+      <section className="bg-[#EAF2ED] py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-5 text-[#2F5D50]">
+            Start Trading Today
+          </h2>
 
-        <p className="mb-6">
-          Join thousands of farmers and buyers already using AgriLink.
-        </p>
+          <p className="text-gray-700 text-lg mb-8 leading-relaxed">
+            Join thousands of farmers and buyers already building a smarter,
+            more connected agricultural marketplace.
+          </p>
 
-        <Link
-          to="/register"
-          className="bg-green-700 text-white px-6 py-3 rounded font-semibold"
-        >
-          Create Account
-        </Link>
+          <Link
+            to="/register"
+            className="inline-block bg-[#2F5D50] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#23463C] transition"
+          >
+            Create Account
+          </Link>
+        </div>
       </section>
     </div>
   );
