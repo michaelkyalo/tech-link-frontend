@@ -10,28 +10,28 @@ const Home = () => {
             Fresh • Local • Trusted
           </p>
 
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-8xl md:text-4xl font-bold leading-tight mb-6">
             Welcome to AgriLink
           </h1>
 
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-green-50 leading-relaxed text-center">
-            A modern agricultural marketplace connecting farmers and buyers
+          <p className="text-4xl md:text-2xl font-bold leading-tight mb-6">
+               A modern agricultural marketplace connecting farmers and buyers
             directly for fresh, affordable, and high-quality farm products.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/products"
-              className="bg-white text-[#2F5D50] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition"
+              className="border border-blue px-10 py-6 rounded-x4 font-semibold hover:bg-brown hover:text-coluo2F5D50] transition"
             >
-              Browse Products
+              Login
             </Link>
 
             <Link
               to="/register"
-              className="border border-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-[#2F5D50] transition"
+              className="border border-blue px-10 py-6 rounded-x4 font-semibold hover:bg-brown hover:text-coluo2F5D50] transition"
             >
-              Get Started
+              Register
             </Link>
           </div>
         </div>
@@ -91,23 +91,16 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#EAF2ED] py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-5 text-[#2F5D50]">
+      <section className="bg-[#EAF2ED] py-15 px-3">
+        <div className="max-w-10xl mx-auto text-center">
+          <h2 className="text-4xl md:text-3xl font-bold leading-tight mb-6 text-center text-[#2F5D50]">
             Start Trading Today
           </h2>
 
-          <p className="text-gray-700 text-lg mb-8 leading-relaxed">
+          <p className="text-gray-700 text-lg mb-10 leading-relaxed">
             Join thousands of farmers and buyers already building a smarter,
             more connected agricultural marketplace.
           </p>
-
-          <Link
-            to="/register"
-            className="inline-block bg-[#2F5D50] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#23463C] transition"
-          >
-            Create Account
-          </Link>
         </div>
       </section>
     </div>
