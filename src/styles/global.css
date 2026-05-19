@@ -176,6 +176,10 @@ select {
 .auth-input.is-valid  { border-color: var(--color-success); }
 .auth-input.is-error  { border-color: var(--color-error); }
 
+input[type="date"].auth-input {
+  padding: 9px 12px;
+}
+
 .auth-input-wrap { position: relative; }
 
 .auth-input-wrap .auth-input { padding-right: 40px; }

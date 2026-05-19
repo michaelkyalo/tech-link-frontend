@@ -369,7 +369,7 @@ const Home = () => {
  
       `}</style>
 
-      {/* NAVBAR */}
+    
       <nav className="navbar">
         <h1 className="logo">
           Agri<span>Link</span>
@@ -386,10 +386,10 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* HERO SECTION */}
+      
       <section className="hero">
 
-        {/* LEFT SIDE */}
+        
         <div className="hero-left">
 
           
@@ -418,7 +418,7 @@ const Home = () => {
           </div>
         </div>
  
-        {/* RIGHT SIDE */}
+        
         <div className="hero-right">
 
           <div className="hero-image">
@@ -432,7 +432,7 @@ const Home = () => {
 
       </section>
  
-      {/* FEATURES SECTION */}
+      
       <section className="features-section">
         
         <h2 className="section-title">
