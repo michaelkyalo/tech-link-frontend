@@ -58,9 +58,10 @@ const Login = () => {
                 type="button"
                 className="auth-eye"
                 onClick={() => setShowPassword(!showPassword)}
-              >
+               >
+                   {showPassword ? "show" : "hide"}
                 
-              </button>
+                </button>
             </div>
           </div>
 

@@ -110,7 +110,7 @@ const Register = () => {
                   className="auth-eye"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                   {showPassword ? "0" : "0"}
+                   {showPassword ? "show" : "hide"}
                 </button>
               </div>
             </div>
@@ -132,7 +132,7 @@ const Register = () => {
                   className="auth-eye"
                   onClick={() => setShowConfirm(!showConfirm)}
                 >
-                  {showConfirm ? "0" : "0"}
+                  {showConfirm ? "show" : "hide"}
                 </button>
               </div>
               {passwordsMatch    && <p className="auth-hint ok"> Match</p>}
