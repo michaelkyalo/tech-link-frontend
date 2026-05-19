@@ -6,6 +6,8 @@ const Register = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
+    birthday: "",
     password: "",
     confirmPassword: "",
     role: "",
@@ -75,6 +77,33 @@ const Register = () => {
               onChange={handleChange}
               required
             />
+          </div>
+
+          <div className="auth-grid-2">
+            <div className="auth-field">
+              <label className="auth-label">Phone Number</label>
+              <input
+                className="auth-input"
+                type="tel"
+                name="phone"
+                placeholder="+254 7XX XXX XXX"
+                value={form.phone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="auth-field">
+              <label className="auth-label">Birthday</label>
+              <input
+                className="auth-input"
+                type="date"
+                name="birthday"
+                value={form.birthday}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
 
           {/* Email */}

@@ -95,21 +95,21 @@ select {
 
 
 .auth-page {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--color-background);
-  overflow: hidden;
+  padding: 20px 0;
 }
 
 .auth-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  padding: 32px 36px;
+  padding: 24px 28px;
 }
 
 .auth-logo {
@@ -259,11 +259,48 @@ select {
 
 .auth-btn:active { transform: translateY(0); }
 
+.auth-divider {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  margin: 20px 0;
+}
+
+.auth-social-btn {
+  width: 100%;
+  padding: 9px;
+  background: #fff;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.auth-social-btn:hover {
+  border-color: var(--color-primary);
+  background: #f8fafc;
+}
+
+.auth-social-btn.mpesa {
+  background: #00a651;
+  color: #fff;
+  border-color: #00a651;
+}
+
+.auth-social-btn.mpesa:hover {
+  background: #008f45;
+}
+
 .auth-role-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 4px;
+  gap: 8px;
+  margin: 8px 0 12px;
 }
 
 .auth-role-btn {
