@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import RegisterForm from "../../components/forms/RegisterForm";
+import LoginForm from "../../components/forms/LoginForm";
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -20,13 +20,14 @@ const Register = () => {
           ← Back
         </button>
 
-        <h2 className="text-2xl font-bold mb-4">Register</h2>
+        <h2 className="text-2xl font-bold mb-4">Login</h2>
 
-        <RegisterForm />
+        <LoginForm />
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Login;
+   ;
   
