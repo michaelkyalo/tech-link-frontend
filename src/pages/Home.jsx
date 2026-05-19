@@ -2,538 +2,508 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        fontFamily: "'Georgia', 'Times New Roman', serif",
-        background: "#F7F3EE",
-        color: "#1a1a1a",
-        overflowX: "hidden",
-      }}
-    >
+    <div className="home-container">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        .hero-section {
-          position: relative;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          background: linear-gradient(145deg, #1B3D2F 0%, #2F5D50 40%, #3D7A65 70%, #1B3D2F 100%);
+        *{
+          margin:0;
+          padding:0;
+          box-sizing:border-box;
         }
 
-        .hero-noise {
-          position: absolute;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-          opacity: 0.4;
-          pointer-events: none;
+        body{
+          font-family:'Poppins', sans-serif;
+          background:#f7f3ee;
         }
 
-        .hero-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(80px);
-          opacity: 0.15;
+        .home-container{
+          min-height:100vh;
+          background:#f7f3ee;
+          padding:0 80px;
         }
 
-        .hero-blob-1 {
-          width: 600px; height: 600px;
-          background: #6DBE9A;
-          top: -150px; right: -100px;
-          animation: float1 8s ease-in-out infinite;
+        /* NAVBAR */
+
+        .navbar{
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          padding:30px 0;
         }
 
-        .hero-blob-2 {
-          width: 400px; height: 400px;
-          background: #D4A853;
-          bottom: -100px; left: -80px;
-          animation: float2 10s ease-in-out infinite;
+        .logo{
+          font-size:32px;
+          font-weight:700;
+          color:#1f3d2b;
         }
 
-        @keyframes float1 {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-30px) scale(1.05); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(20px) scale(0.95); }
+        .logo span{
+          color:#5c8d63;
         }
 
-        .hero-content {
-          position: relative;
-          z-index: 2;
-          text-align: center;
-          max-width: 860px;
-          padding: 60px 32px;
+        .nav-links{
+          display:flex;
+          gap:40px;
+          align-items:center;
         }
 
-        .hero-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          background: rgba(255,255,255,0.08);
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 40px;
-          padding: 8px 22px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 3.5px;
-          text-transform: uppercase;
-          color: #A8D8C0;
-          margin-bottom: 36px;
-          backdrop-filter: blur(10px);
+        .nav-links a{
+          text-decoration:none;
+          color:#333;
+          font-size:16px;
+          font-weight:500;
+          transition:0.3s;
         }
 
-        .hero-badge-dot {
-          width: 6px; height: 6px;
-          border-radius: 50%;
-          background: #6DBE9A;
-          animation: pulse 2s ease-in-out infinite;
+        .nav-links a:hover{
+          color:#2f5d50;
         }
 
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.5; transform: scale(1.4); }
+        .signin-btn{
+          background:#2f5d50;
+          color:white !important;
+          padding:12px 28px;
+          border-radius:10px;
         }
 
-        .hero-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(56px, 9vw, 108px);
-          font-weight: 900;
-          line-height: 0.95;
-          color: #FFFFFF;
-          letter-spacing: -3px;
-          margin-bottom: 28px;
+        /* HERO SECTION */
+
+        .hero{
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:60px;
+          min-height:85vh;
         }
 
-        .hero-title em {
-          font-style: italic;
-          color: #89D4AC;
+        .hero-left{
+          flex:1;
         }
 
-        .hero-subtitle {
-          font-family: 'DM Sans', sans-serif;
-          font-size: clamp(16px, 2.2vw, 19px);
-          font-weight: 300;
-          line-height: 1.7;
-          color: rgba(255,255,255,0.65);
-          max-width: 560px;
-          margin: 0 auto 48px;
+        .hero-small{
+          color:#5c8d63;
+          font-weight:600;
+          margin-bottom:20px;
+          font-size:15px;
+          letter-spacing:1px;
         }
 
-        .hero-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 14px;
-          justify-content: center;
+        .hero-title{
+          font-size:70px;
+          line-height:1.1;
+          color:#1f3d2b;
+          font-weight:700;
+          margin-bottom:25px;
         }
 
-        .btn-primary {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 600;
-          font-size: 15px;
-          letter-spacing: 0.3px;
-          background: #ffffff;
-          color: #1B3D2F;
-          padding: 16px 38px;
-          border-radius: 50px;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        .hero-text{
+          font-size:18px;
+          color:#555;
+          line-height:1.8;
+          margin-bottom:40px;
+          max-width:550px;
         }
 
-        .btn-primary:hover {
-          background: #89D4AC;
-          color: #1B3D2F;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        .hero-buttons{
+          display:flex;
+          gap:20px;
+          align-items:center;
         }
 
-        .btn-secondary {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 500;
-          font-size: 15px;
-          background: transparent;
-          color: #ffffff;
-          padding: 16px 38px;
-          border-radius: 50px;
-          border: 1.5px solid rgba(255,255,255,0.35);
-          text-decoration: none;
-          transition: all 0.3s ease;
-          backdrop-filter: blur(8px);
+        .primary-btn{
+          background:#2f5d50;
+          color:white;
+          padding:16px 35px;
+          border-radius:12px;
+          text-decoration:none;
+          font-weight:600;
+          transition:0.3s;
         }
 
-        .btn-secondary:hover {
-          border-color: #89D4AC;
-          color: #89D4AC;
-          transform: translateY(-2px);
+        .primary-btn:hover{
+          background:#23463b;
         }
 
-        /* Stats bar */
-        .stats-bar {
-          background: #ffffff;
-          border-bottom: 1px solid #e8e0d5;
-          padding: 28px 32px;
+        .secondary-btn{
+          border:2px solid #2f5d50;
+          color:#2f5d50;
+          padding:14px 35px;
+          border-radius:12px;
+          text-decoration:none;
+          font-weight:600;
+          transition:0.3s;
         }
 
-        .stats-inner {
-          max-width: 900px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-around;
-          flex-wrap: wrap;
-          gap: 24px;
+        .secondary-btn:hover{
+          background:#2f5d50;
+          color:white;
         }
 
-        .stat-item {
-          text-align: center;
+        /* HERO IMAGE */
+
+        .hero-right{
+          flex:1;
+          display:flex;
+          justify-content:center;
         }
 
-        .stat-number {
-          font-family: 'Playfair Display', serif;
-          font-size: 34px;
-          font-weight: 700;
-          color: #2F5D50;
-          line-height: 1;
+        .hero-image{
+          width:100%;
+          max-width:550px;
+          border-radius:30px;
+          overflow:hidden;
+          box-shadow:0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .stat-label {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 12px;
-          color: #8a7f74;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          margin-top: 5px;
+        .hero-image img{
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          display:block;
         }
 
-        .stat-divider {
-          width: 1px;
-          background: #e8e0d5;
-          align-self: stretch;
+        /* RESPONSIVE */
+
+        @media(max-width:992px){
+
+          .home-container{
+            padding:0 30px;
+          }
+
+          .hero{
+            flex-direction:column;
+            text-align:center;
+            padding-bottom:60px;
+          }
+
+          .hero-text{
+            margin:auto;
+            margin-bottom:40px;
+          }
+
+          .hero-buttons{
+            justify-content:center;
+          }
+
+          .hero-title{
+            font-size:52px;
+          }
+
+          .nav-links{
+            gap:20px;
+          }
         }
 
-        /* Features */
+        @media(max-width:768px){
+
+          .navbar{
+            flex-direction:column;
+            gap:20px;
+          }
+
+          .nav-links{
+            flex-wrap:wrap;
+            justify-content:center;
+          }
+
+          .hero-title{
+            font-size:42px;
+          }
+
+          .hero-text{
+            font-size:16px;
+          }
+        }
+ 
+        /* FEATURES SECTION */
         .features-section {
-          padding: 100px 32px;
-          background: #F7F3EE;
+          padding: 80px 0;
+          text-align: center;
         }
-
+ 
         .section-label {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 11px;
+          color: #5c8d63;
           font-weight: 600;
-          letter-spacing: 3.5px;
+          font-size: 14px;
+          letter-spacing: 2px;
+          margin-bottom: 12px;
           text-transform: uppercase;
-          color: #2F5D50;
-          text-align: center;
-          margin-bottom: 16px;
         }
-
+ 
         .section-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(36px, 5vw, 52px);
+          font-size: 42px;
+          line-height: 1.2;
+          color: #1f3d2b;
           font-weight: 700;
-          text-align: center;
-          color: #1B3D2F;
-          line-height: 1.15;
-          margin-bottom: 64px;
+          margin-bottom: 50px;
         }
-
+ 
         .features-grid {
-          max-width: 1080px;
-          margin: 0 auto;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 30px;
+          max-width: 1100px;
+          margin: 0 auto;
         }
-
+ 
         .feature-card {
-          background: #ffffff;
-          border-radius: 24px;
-          padding: 44px 36px;
-          border: 1px solid #e8e0d5;
-          transition: all 0.35s ease;
-          position: relative;
-          overflow: hidden;
+          background: white;
+          padding: 40px 30px;
+          border-radius: 20px;
+          text-align: left;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .feature-card::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 4px;
-          background: linear-gradient(90deg, #2F5D50, #89D4AC);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.35s ease;
-        }
-
+ 
         .feature-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 20px 60px rgba(47, 93, 80, 0.12);
-          border-color: transparent;
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-
-        .feature-card:hover::before {
-          transform: scaleX(1);
-        }
-
-        .feature-icon {
-          width: 60px; height: 60px;
-          border-radius: 18px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 28px;
-          margin-bottom: 28px;
-        }
-
-        .icon-green { background: #E8F5EE; }
-        .icon-earth { background: #F5EDE0; }
-        .icon-sky { background: #E5F0FF; }
-
+ 
         .feature-card h2 {
-          font-family: 'Playfair Display', serif;
-          font-size: 24px;
-          font-weight: 700;
-          color: #1B3D2F;
-          margin-bottom: 14px;
+          font-size: 22px;
+          color: #1f3d2b;
+          margin-bottom: 16px;
+          font-weight: 600;
         }
-
+ 
         .feature-card p {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 15.5px;
-          color: #6b6560;
-          line-height: 1.75;
+          color: #555;
+          line-height: 1.7;
+          margin-bottom: 24px;
+          font-size: 15px;
         }
-
+ 
         .feature-link {
+          color: #2f5d50;
+          font-weight: 600;
+          text-decoration: none;
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 13px;
-          font-weight: 600;
-          color: #2F5D50;
-          text-decoration: none;
-          margin-top: 24px;
-          letter-spacing: 0.5px;
-          text-transform: uppercase;
-          transition: gap 0.2s ease;
         }
-
-        .feature-link:hover { gap: 10px; }
-
-        /* CTA */
+ 
+        .feature-link:hover {
+          color: #1f3d2b;
+        }
+ 
+        /* CTA SECTION */
         .cta-section {
-          margin: 0 32px 80px;
-          border-radius: 32px;
-          background: linear-gradient(135deg, #1B3D2F 0%, #2F5D50 50%, #3a6b5a 100%);
-          padding: 80px 48px;
+          background: #1f3d2b;
+          color: white;
+          padding: 80px 60px;
+          border-radius: 30px;
           text-align: center;
-          position: relative;
-          overflow: hidden;
+          margin: 60px 0;
         }
-
-        .cta-section::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-          pointer-events: none;
-        }
-
+ 
         .cta-label {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 3.5px;
+          color: #a8d5b0;
+          font-size: 14px;
+          letter-spacing: 2px;
           text-transform: uppercase;
-          color: #89D4AC;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
         }
-
+ 
         .cta-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(36px, 5vw, 58px);
-          font-weight: 900;
-          color: #ffffff;
+          font-size: 48px;
           line-height: 1.1;
+          font-weight: 700;
           margin-bottom: 20px;
         }
-
+ 
         .cta-title em {
           font-style: italic;
-          color: #89D4AC;
+          color: #a8d5b0;
         }
-
+ 
         .cta-sub {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 17px;
-          font-weight: 300;
-          color: rgba(255,255,255,0.6);
           max-width: 520px;
-          margin: 0 auto 44px;
+          margin: 0 auto 30px;
+          font-size: 17px;
           line-height: 1.7;
+          opacity: 0.9;
         }
-
+ 
         .cta-buttons {
           display: flex;
-          gap: 14px;
+          gap: 20px;
           justify-content: center;
           flex-wrap: wrap;
-          position: relative;
-          z-index: 2;
         }
-
-        .btn-cta-primary {
-          font-family: 'DM Sans', sans-serif;
+ 
+        .cta-btn {
+          background: white;
+          color: #1f3d2b;
+          padding: 14px 32px;
+          border-radius: 12px;
+          text-decoration: none;
           font-weight: 600;
           font-size: 15px;
-          background: #89D4AC;
-          color: #1B3D2F;
-          padding: 17px 40px;
-          border-radius: 50px;
-          text-decoration: none;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 20px rgba(137, 212, 172, 0.3);
         }
-
-        .btn-cta-primary:hover {
-          background: #a8dfbf;
+ 
+        .cta-btn:hover {
+          background: #f0f0f0;
           transform: translateY(-2px);
-          box-shadow: 0 8px 32px rgba(137, 212, 172, 0.4);
         }
-
-        .btn-cta-secondary {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 500;
-          font-size: 15px;
-          background: transparent;
-          color: rgba(255,255,255,0.8);
-          padding: 17px 40px;
-          border-radius: 50px;
-          border: 1.5px solid rgba(255,255,255,0.25);
-          text-decoration: none;
-          transition: all 0.3s ease;
+ 
+        .cta-btn.farmer {
+          background: #5c8d63;
+          color: white;
         }
-
-        .btn-cta-secondary:hover {
-          border-color: rgba(255,255,255,0.6);
-          color: #fff;
+ 
+        .cta-btn.farmer:hover {
+          background: #4a744f;
         }
-
-        /* Footer strip */
+ 
+        /* FOOTER STRIP */
         .footer-strip {
-          background: #1B3D2F;
-          padding: 24px 32px;
           text-align: center;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 13px;
-          color: rgba(255,255,255,0.35);
+          padding: 30px 0;
+          color: #777;
+          font-size: 14px;
+          border-top: 1px solid #e0d9cf;
         }
-
-        @media (max-width: 600px) {
-          .stat-divider { display: none; }
-          .cta-section { margin: 0 16px 60px; padding: 60px 28px; }
-          .hero-title { letter-spacing: -1.5px; }
-        }
+ 
       `}</style>
 
-    
-      <section className="hero-section">
-        <div className="hero-noise" />
-        <div className="hero-blob hero-blob-1" />
-        <div className="hero-blob hero-blob-2" />
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <h1 className="logo">
+          Agri<span>Link</span>
+        </h1>
 
-        <div className="hero-content">
-          <div className="hero-badge">
-            <div className="hero-badge-dot" />
-            Fresh &amp; Local
-          </div>
+        <div className="nav-links">
+          <a href="#">Marketplace</a>
+          <a href="#">Producers</a>
+          <a href="#">Resources</a>
+
+          <Link to="/login" className="signin-btn">
+            Sign In
+          </Link>
+        </div>
+      </nav>
+
+      {/* HERO SECTION */}
+      <section className="hero">
+
+        {/* LEFT SIDE */}
+        <div className="hero-left">
+
+          
 
           <h1 className="hero-title">
-            Agri<em>Link</em>
+            Connect Farmers 
+            Directly to Buyers<br />
           </h1>
 
-          <p className="hero-subtitle">
-            A modern agricultural marketplace connecting farmers and buyers
-            directly — for fresh, affordable, and high-quality farm products.
+          <p className="hero-text">
+            AgriLink bridges the gab between rural havests and urban kitchens
+            Empowering local producers with fair market access and 
+            transparent logistics for a sustainable future.
           </p>
 
           <div className="hero-buttons">
-            <Link to="/login" className="btn-primary">
-              Sign In
+
+            <Link to="/register" className="primary-btn">
+              Get Started
             </Link>
-            <Link to="/register" className="btn-secondary">
-              Create Account →
+
+            <Link to="/login" className="secondary-btn">
+              Learn More
             </Link>
+
           </div>
         </div>
+ 
+        {/* RIGHT SIDE */}
+        <div className="hero-right">
+
+          <div className="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop"
+              alt="Farm"
+            />
+          </div>
+
+        </div>
+
       </section>
-
+ 
+      {/* FEATURES SECTION */}
       <section className="features-section">
-        <p className="section-label">How It Works</p>
+        
         <h2 className="section-title">
-          Built for every step<br />of the supply chain
-        </h2>
-
+          Culivate Trust, Digitally </h2>
+ 
         <div className="features-grid">
           {/* Farmers */}
           <div className="feature-card">
-
-            <h2>Farmers</h2>
+            <h2>Multiplayer Trade</h2>
             <p>
-              List your produce, set your prices, and sell directly to buyers —
-              no middlemen taking your margin. Grow your business on your terms.
-            </p>
-            <a href="#" className="feature-link">Learn more →</a>
-          </div>
-
-          {/* Buyers */}
-          <div className="feature-card">
+              Group-buy mechanics allow urban communities to pool resourses 
+              for wholesale prices while providing farmers with guaranteed bulk orders.</p>
             
-            <h2>Buyers</h2>
-            <p>
-              Browse farm-fresh products sourced directly from verified local
-              farmers. Guaranteed quality at fair, transparent prices.
-            </p>
-            <a href="#" className="feature-link">Learn more →</a>
           </div>
-
-        
+ 
+          
           <div className="feature-card">
-            
-            <h2>Fast Delivery</h2>
+            <h2>Fair Pricing</h2>
             <p>
-              Our logistics network ensures your order arrives fresh and on time
-              — from farm gate to your doorstep within 24 hours.
+             Our algorithim pricing ensures farmers 
+             get a living wage by removing predatory 
+             midddlemen and reflecting real-time market value.
             </p>
-            <a href="#" className="feature-link">Learn more →</a>
+            
+          </div>
+ 
+          
+          <div className="feature-card">
+            <h2>Loyal Rewards</h2>
+            <p>
+              Earn 'Root'tokens for every organic 
+              purchase, redeemable for seasonal exclusives 
+              or to fund regenerative soil health initiatives.
+            </p>
+            
           </div>
         </div>
       </section>
-
-    
+ 
+      
       <section className="cta-section">
-        <p className="cta-label">Join the movement</p>
         <h2 className="cta-title">
-          Start trading<br /><em>today.</em>
+          Ready to join the Ecosystem?
         </h2>
         <p className="cta-sub">
-          Join thousands of farmers and buyers already building a smarter,
-          more connected agricultural marketplace.
+          whether you're a producer seeking for fair value or a buyer seeking premium
+          freshness, AgriLink is your digital homestead.
         </p>
-        </section>
-
+        <div className="cta-buttons">
+          <Link to="/register?role=farmer" className="cta-btn farmer">
+            I'm a Farmer
+          </Link>
+          <Link to="/register?role=buyer" className="cta-btn">
+            I'm a Buyer
+          </Link>
+        </div>
+      </section>
+ 
       <div className="footer-strip">
-        © 2026 AgriLink · Connecting farms to tables
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <div style={{ fontWeight: 600, color: '#1f3d2b', marginBottom: '4px' }}>AgriLink</div>
+            © 2026 AgriLink Marketplace·Rooted in Transparency 
+          </div>
+          <div style={{ display: 'flex', gap: '24px', fontSize: '14px' }}>
+            <a href="#" style={{ color: '#555', textDecoration: 'none' }}>Privacy Policy</a>
+            <a href="#" style={{ color: '#555', textDecoration: 'none' }}>Terms of Service</a>
+            <a href="#" style={{ color: '#555', textDecoration: 'none' }}>Farmer Support</a>
+            <a href="#" style={{ color: '#555', textDecoration: 'none' }}>Buyer FAQ</a>
+          </div>
+        </div>
       </div>
     </div>
   );
