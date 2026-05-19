@@ -15,7 +15,7 @@ const Register = () => {
         {/* Back button */}
         <button
           onClick={handleBack}
-          className="mb-3 text-blue-600 hover:underline"
+          className="mb-3 text-black-600 hover:underline"
         >
           ← Back
         </button>
