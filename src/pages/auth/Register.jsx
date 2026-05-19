@@ -100,7 +100,7 @@ const Register = () => {
                   className="auth-input"
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Min 8 chars"
+                  placeholder=""
                   value={form.password}
                   onChange={handleChange}
                   required
