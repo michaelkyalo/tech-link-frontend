@@ -70,7 +70,7 @@ const Register = () => {
               className="auth-input"
               type="text"
               name="name"
-              placeholder="Jane Wanjiku"
+              placeholder="lyon nganga"
               value={form.name}
               onChange={handleChange}
               required
@@ -111,6 +111,7 @@ const Register = () => {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                    {showPassword ? "show" : "hide"}
+          
                 </button>
               </div>
             </div>
