@@ -2,11 +2,13 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  const login  = useAuth();
 
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
+    role: "buyer",
   });
 
   const handleChange = (e) => {
@@ -21,6 +23,13 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input
+        name="name"
+        placeholder="Name"
+        onChange={handleChange}
+        className="border p-2 w-full"
+      />
+
+      <input
         name="email"
         placeholder="Email"
         onChange={handleChange}
@@ -34,6 +43,15 @@ const LoginForm = () => {
         onChange={handleChange}
         className="border p-2 w-full"
       />
+
+      <select
+        name="role"
+        onChange={handleChange}
+        className="border p-2 w-full"
+      >
+        <option value="buyer">Buyer</option>
+        <option value="farmer">Farmer</option>
+      </select>
 
       <button className="bg-green-600 text-white px-4 py-2 w-full">
         Login
