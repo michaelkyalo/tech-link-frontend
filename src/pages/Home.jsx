@@ -533,7 +533,7 @@ const Home = () => {
         </section>
 
       <div className="footer-strip">
-        © 2025 AgriLink · Connecting farms to tables
+        © 2026 AgriLink · Connecting farms to tables
       </div>
     </div>
   );
