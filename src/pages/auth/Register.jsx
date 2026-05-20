@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { register } = useContext(AuthContext);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -18,15 +20,36 @@ const Register = () => {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.password !== form.confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
+    if (!form.role) {
+      alert("Please select a role (Farmer or Buyer).");
+      return;
+    }
+
+    try {
+      const data = {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        birthday: form.birthday,
+        password: form.password,
+        role: form.role,
+      };
+
+      await register(data);
+      alert("Account created! Please log in.");
+      navigate("/login");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed. Try again.");
+    }
   };
 
-  const passwordsMatch   = form.confirmPassword && form.password === form.confirmPassword;
+  const passwordsMatch = form.confirmPassword && form.password === form.confirmPassword;
   const passwordsMismatch = form.confirmPassword && form.password !== form.confirmPassword;
 
   return (
@@ -44,7 +67,7 @@ const Register = () => {
 
         <form onSubmit={handleSubmit}>
 
-          
+
           <div className="auth-field">
             <label className="auth-label">I am a…</label>
             <div className="auth-role-row">
@@ -53,14 +76,14 @@ const Register = () => {
                 className={`auth-role-btn ${form.role === "farmer" ? "active" : ""}`}
                 onClick={() => setForm({ ...form, role: "farmer" })}
               >
-                 Farmer
+                Farmer
               </button>
               <button
                 type="button"
                 className={`auth-role-btn ${form.role === "buyer" ? "active" : ""}`}
                 onClick={() => setForm({ ...form, role: "buyer" })}
               >
-                 Buyer
+                Buyer
               </button>
             </div>
           </div>
@@ -120,7 +143,7 @@ const Register = () => {
             />
           </div>
 
-        
+
           <div className="auth-grid-2">
             <div className="auth-field">
               <label className="auth-label">Password</label>
@@ -139,8 +162,8 @@ const Register = () => {
                   className="auth-eye"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                   {showPassword ? "show" : "hide"}
-          
+                  {showPassword ? "show" : "hide"}
+
                 </button>
               </div>
             </div>
@@ -165,7 +188,7 @@ const Register = () => {
                   {showConfirm ? "show" : "hide"}
                 </button>
               </div>
-              {passwordsMatch    && <p className="auth-hint ok"> Match</p>}
+              {passwordsMatch && <p className="auth-hint ok"> Match</p>}
               {passwordsMismatch && <p className="auth-hint err"> No match</p>}
             </div>
           </div>

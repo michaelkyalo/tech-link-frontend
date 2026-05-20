@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     setUser(res.user);
     saveToStorage("user", res.user);
-    saveToStorage("token", res.token);
+    saveToStorage("token", res.access_token);
 
     return res;
   };
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
     setUser(res.user);
     saveToStorage("user", res.user);
-    saveToStorage("token", res.token);
+    saveToStorage("token", res.access_token);
 
     return res;
   };

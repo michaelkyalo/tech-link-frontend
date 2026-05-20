@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [form, setForm] = useState({ email: "", password: "", role: "buyer" });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    try {
+      const res = await login({ email: form.email, password: form.password });
+      const role = res.user?.role;
+      if (role === "farmer") navigate("/farmer");
+      else if (role === "buyer") navigate("/buyer");
+      else if (role === "admin") navigate("/admin");
+      else navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login failed. Check your credentials.");
+    }
   };
 
   return (
@@ -78,10 +89,10 @@ const Login = () => {
                 type="button"
                 className="auth-eye"
                 onClick={() => setShowPassword(!showPassword)}
-               >
-                   {showPassword ? "show" : "hide"}
-                
-                </button>
+              >
+                {showPassword ? "show" : "hide"}
+
+              </button>
             </div>
           </div>
 
@@ -96,7 +107,7 @@ const Login = () => {
 
         </form>
 
-        <div className="auth-divider" style={{margin: '12px 0', textAlign: 'center', color: 'var(--color-text-muted)', fontSize: '0.75rem'}}>continue with</div>
+        <div className="auth-divider" style={{ margin: '12px 0', textAlign: 'center', color: 'var(--color-text-muted)', fontSize: '0.75rem' }}>continue with</div>
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button type="button" className="auth-social-btn" style={{ width: '200px' }}>Google</button>
