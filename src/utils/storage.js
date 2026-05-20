@@ -4,7 +4,7 @@ export const saveToStorage = (key, value) => {
 
 export const getFromStorage = (key) => {
   const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : null;
+  return data && data !== "undefined" ? JSON.parse(data) : null;
 };
 
 export const removeFromStorage = (key) => {
