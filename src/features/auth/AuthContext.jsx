@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
-import { getFromStorage, saveToStorage, removeFromStorage } from "../utils/storage";
-import { loginUser, registerUser } from "../services/authService";
+import { getFromStorage, saveToStorage, removeFromStorage } from "../../utils/storage";
+import { loginUser, registerUser } from "./authService";
 
 export const AuthContext = createContext();
 
@@ -16,21 +16,17 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     const res = await loginUser(data);
-
     setUser(res.user);
     saveToStorage("user", res.user);
-    saveToStorage("token", res.access_token);
-
+    saveToStorage("token", res.token);
     return res;
   };
 
   const register = async (data) => {
     const res = await registerUser(data);
-
     setUser(res.user);
     saveToStorage("user", res.user);
-    saveToStorage("token", res.access_token);
-
+    saveToStorage("token", res.token);
     return res;
   };
 

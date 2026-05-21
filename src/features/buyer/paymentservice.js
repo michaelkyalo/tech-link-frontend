@@ -1,5 +1,5 @@
-import api from "./api";
-
+// ✅ new
+import api from "../../services/api";
 export const initiatePayment = async (data) => {
   const response = await api.post(
     "/payments/initiate",

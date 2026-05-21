@@ -1,8 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { getFromStorage } from "../utils/storage";
+import { useContext } from "react";
+import { AuthContext } from "../features/auth/AuthContext";
 
 const ProtectedRoute = ({ children, role }) => {
-  const user = getFromStorage("user");
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) return null; // or a spinner
 
   if (!user) {
     return <Navigate to="/login" />;

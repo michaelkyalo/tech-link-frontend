@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
-import BuyerDashboard from "../pages/buyer/BuyerDashboard";
-import FarmerDashboard from "../pages/farmer/FarmerDashboard";
-import Products from "../pages/buyer/Products";
-import Cart from "../pages/buyer/Cart";
-import Orders from "../pages/buyer/Orders";
-import ChatPage from "../pages/chat/chatPage";
+import Home from "../Home";
+import Login from "../features/auth/Login";
+import Register from "../features/auth/Register";
+import BuyerDashboard from "../features/buyer/BuyerDashboard";
+import FarmerDashboard from "../features/farmer/FarmerDashboard";
+import Products from "../features/buyer/Products";
+import Cart from "../features/buyer/Cart";
+import Orders from "../features/buyer/Orders";
+import ChatPage from "../features/chat/chatPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const AppRoutes = () => {
@@ -27,7 +27,6 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/products"
         element={
@@ -36,7 +35,6 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/cart"
         element={
@@ -45,7 +43,6 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
       <Route
         path="/orders"
         element={

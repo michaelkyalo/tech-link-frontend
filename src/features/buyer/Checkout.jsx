@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useCart from "../../hooks/useCart";
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from "../utils/helpers";
 import { createOrder } from "../../services/orderService";
 import { initiatePayment } from "../../services/paymentService";
 

@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../../services/api";
 
 export const getChats = async () => {
   const response = await api.get("/chats");
