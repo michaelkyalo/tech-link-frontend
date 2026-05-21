@@ -27,13 +27,13 @@ export default function Products() {
 
   const filtered = products.filter(p =>
     (cat === "All" || p.category === cat) &&
-    p.name.toLowerCase().includes(search.toLowerCase())
+    p.product_name.toLowerCase().includes(search.toLowerCase())
   );
 
   const handleAdd = (e, product) => {
     e.stopPropagation();
     addToCart(product);
-    setAdded(product.id);
+    setAdded(product.product_id);
     setTimeout(() => setAdded(null), 2000);
   };
 
@@ -72,23 +72,24 @@ export default function Products() {
         ? <div style={s.empty}>😕 No products match your search.</div>
         : <div style={s.grid}>
             {filtered.map(p => (
-              <div key={p.id} style={s.card} onClick={() => navigate(`/products/${p.id}`)}>
+              <div key={p.product_id} style={s.card} onClick={() => navigate(`/products/${p.product_id}`)}>
                 <div style={s.imgWrap}>
                   {p.image_url
-                    ? <img src={p.image_url} alt={p.name} style={s.img} />
-                    : <div style={s.imgFallback}>{EMOJI[p.category] || EMOJI.default}</div>}
+                    ? <img src={p.image_url} alt={p.product_name} style={s.img} />
+                    : <div style={s.imgFallback}>{EMOJI[p.category] || EMOJI.default}</div>
+                  }
                 </div>
                 <div style={s.body}>
                   {p.category && <span style={s.badge}>{p.category}</span>}
-                  <h2 style={s.name}>{p.name}</h2>
+                  <h2 style={s.name}>{p.product_name}</h2>
                   <p style={s.desc}>{p.description}</p>
                   <div style={s.footer}>
                     <span style={s.price}>{formatCurrency(p.price)}</span>
                     <button
                       onClick={e => handleAdd(e, p)}
-                      style={{ ...s.btn, background: added === p.id ? "#15803d" : "#16a34a" }}
+                      style={{ ...s.btn, background: added === p.product_id ? "#15803d" : "#16a34a" }}
                     >
-                      {added === p.id ? "✔ Added" : "+ Cart"}
+                      {added === p.product_id ? "✔ Added" : "+ Cart"}
                     </button>
                   </div>
                 </div>
