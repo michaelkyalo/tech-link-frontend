@@ -10,7 +10,7 @@ const actions = [
   { label: "Browse Products", to: "/products", bg: "#16a34a" },
   { label: "View Cart",       to: "/cart",     bg: "#2563eb" },
   { label: "My Orders",       to: "/orders",   bg: "#d97706" },
-  { label: "Open Chat",       to: "/chat",     bg: "#7c3aed" },
+
 ];
 
 const activity = [

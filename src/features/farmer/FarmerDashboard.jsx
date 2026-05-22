@@ -5,12 +5,10 @@ const stats = [
   { label: "Orders Received", value: "18",       color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
   { label: "Revenue",         value: "KES 45,000", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
 ];
-
 const actions = [
   { label: "Add Product",    to: "/farmer/add-product",   bg: "#16a34a", hover: "#15803d" },
   { label: "View Products",  to: "/farmer/view-products", bg: "#2563eb", hover: "#1d4ed8" },
   { label: "View Orders",    to: "/farmer/orders",        bg: "#d97706", hover: "#b45309" },
-  { label: "Open Chat",      to: "/chat",                 bg: "#7c3aed", hover: "#6d28d9" },
 ];
 
 const activity = [
