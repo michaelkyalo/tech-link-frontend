@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useChat } from "../chat/ChatContext";
+import { startConversation } from "../chat/chatservice";
 
 const stats = [
-  { label: "Total Products", value: "24",        color: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0" },
-  { label: "Orders Received", value: "18",       color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
+  { label: "Total Products", value: "24",          color: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0" },
+  { label: "Orders Received", value: "18",         color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
   { label: "Revenue",         value: "KES 45,000", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
-];
-const actions = [
-  { label: "Add Product",    to: "/farmer/add-product",   bg: "#16a34a", hover: "#15803d" },
-  { label: "View Products",  to: "/farmer/view-products", bg: "#2563eb", hover: "#1d4ed8" },
-  { label: "View Orders",    to: "/farmer/orders",        bg: "#d97706", hover: "#b45309" },
 ];
 
 const activity = [
@@ -19,9 +17,11 @@ const activity = [
 ];
 
 export default function FarmerDashboard() {
+  const { unreadCount } = useChat();
+  const navigate = useNavigate();
+
   return (
     <div style={s.page}>
-
       {/* Header */}
       <div style={s.header}>
         <div>
@@ -45,11 +45,17 @@ export default function FarmerDashboard() {
       <div style={s.card}>
         <h2 style={s.section}>Quick Actions</h2>
         <div style={s.actions}>
-          {actions.map(({ label, to, bg }) => (
-            <Link key={to} to={to} style={{ ...s.actionBtn, background: bg }}>
-              {label}
-            </Link>
-          ))}
+          <Link to="/farmer/add-product"   style={{ ...s.actionBtn, background: "#16a34a" }}>Add Product</Link>
+          <Link to="/farmer/view-products" style={{ ...s.actionBtn, background: "#2563eb" }}>View Products</Link>
+          <Link to="/farmer/orders"        style={{ ...s.actionBtn, background: "#d97706" }}>View Orders</Link>
+
+          {/* ── Open Chat button ── */}
+          <Link to="/chat" style={{ ...s.actionBtn, background: "#7c3aed", position: "relative" }}>
+            💬 Open Chat
+            {unreadCount > 0 && (
+              <span style={s.badge}>{unreadCount > 9 ? "9+" : unreadCount}</span>
+            )}
+          </Link>
         </div>
       </div>
 
@@ -65,7 +71,6 @@ export default function FarmerDashboard() {
           ))}
         </ul>
       </div>
-
     </div>
   );
 }
@@ -81,8 +86,16 @@ const s = {
   statLabel: { margin: 0, fontSize: 13, color: "#6b7280", fontWeight: 500 },
   statValue: { margin: "8px 0 0", fontSize: 30, fontWeight: 700 },
   section:   { margin: "0 0 1rem", fontSize: 17, fontWeight: 600, color: "#111827" },
-  actions:   { display: "flex", flexWrap: "wrap", gap: 10 },
+  actions:   { display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" },
   actionBtn: { color: "#fff", padding: "9px 18px", borderRadius: 10, textDecoration: "none", fontSize: 14, fontWeight: 500 },
+  badge: {
+    position: "absolute", top: -6, right: -6,
+    background: "#ef4444", color: "#fff",
+    fontSize: 10, fontWeight: 700,
+    borderRadius: 999, minWidth: 18, height: 18,
+    display: "flex", alignItems: "center", justifyContent: "center",
+    padding: "0 4px",
+  },
   actItem:   { display: "flex", alignItems: "center", gap: 10, padding: "10px 0", borderBottom: "1px solid #f3f4f6" },
   actIcon:   { fontSize: 18, width: 28, textAlign: "center" },
 };

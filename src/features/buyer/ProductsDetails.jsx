@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getProduct } from "../farmer/productService";
 import useCart from "./usecart";
 import { formatCurrency } from "../../utils/helpers";
+import { startConversation } from "../chat/chatservice";
+import { useChat } from "../chat/ChatContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -10,7 +12,9 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [added, setAdded]     = useState(false);
+  const [chatLoading, setChatLoading] = useState(false);
   const { addToCart } = useCart();
+  const { openConversation } = useChat();
 
   useEffect(() => {
     getProduct(id)
@@ -23,6 +27,20 @@ export default function ProductDetails() {
     addToCart(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 2500);
+  };
+
+  const handleChatWithFarmer = async () => {
+    if (!product?.farmer_id) return;
+    setChatLoading(true);
+    try {
+      const conversation = await startConversation(product.farmer_id);
+      openConversation(conversation);
+      navigate("/chat");
+    } catch (err) {
+      console.error("Could not start conversation:", err);
+    } finally {
+      setChatLoading(false);
+    }
   };
 
   if (loading) return <div style={s.center}>⏳ Loading product…</div>;
@@ -59,12 +77,22 @@ export default function ProductDetails() {
 
           <p style={s.price}>{formatCurrency(product.price)}</p>
 
-          <button
-            onClick={handleAddToCart}
-            style={{ ...s.btn, background: added ? "#15803d" : "#16a34a" }}
-          >
-            {added ? "✔ Added to Cart!" : "Add to Cart"}
-          </button>
+          <div style={s.btnGroup}>
+            <button
+              onClick={handleAddToCart}
+              style={{ ...s.btn, background: added ? "#15803d" : "#16a34a" }}
+            >
+              {added ? "✔ Added to Cart!" : "Add to Cart"}
+            </button>
+
+            <button
+              onClick={handleChatWithFarmer}
+              disabled={chatLoading || !product?.farmer_id}
+              style={{ ...s.btn, background: chatLoading ? "#6d28d9" : "#7c3aed" }}
+            >
+              {chatLoading ? "Opening…" : "💬 Chat with Farmer"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -88,5 +116,6 @@ const s = {
   metaLabel:   { display: "block", fontSize: 11, color: "#9ca3af", fontWeight: 500, marginBottom: 3 },
   metaValue:   { fontSize: 15, fontWeight: 600, color: "#111827" },
   price:       { margin: 0, fontSize: 30, fontWeight: 700, color: "#16a34a" },
+  btnGroup:    { display: "flex", flexDirection: "column", gap: 10 },
   btn:         { padding: "12px", color: "#fff", border: "none", borderRadius: 12, fontSize: 15, fontWeight: 600, cursor: "pointer", transition: "background .2s" },
 };

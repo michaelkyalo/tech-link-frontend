@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useCart from "./usecart";
 import { formatCurrency } from "../../utils/helpers";
 
 export default function Cart() {
+  const navigate = useNavigate();
+
   const {
     cartItems,
     removeFromCart,
@@ -12,6 +15,7 @@ export default function Cart() {
   const [selectedItems, setSelectedItems] =
     useState([]);
 
+  // Toggle selected items
   const toggleItem = (productId) => {
     setSelectedItems((prev) =>
       prev.includes(productId)
@@ -20,6 +24,7 @@ export default function Cart() {
     );
   };
 
+  // Calculate selected total
   const selectedTotal = cartItems
     .filter((item) =>
       selectedItems.includes(item.product_id)
@@ -30,8 +35,23 @@ export default function Cart() {
       0
     );
 
+  // Handle checkout
+  const handleCheckout = () => {
+    const order = checkoutSelected(
+      selectedItems
+    );
+
+    if (!order) {
+      alert("Please select items");
+      return;
+    }
+
+    navigate("/checkout");
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold">
           Shopping Cart
@@ -42,6 +62,7 @@ export default function Cart() {
         </p>
       </div>
 
+      {/* Empty Cart */}
       {cartItems.length === 0 ? (
         <div className="text-center py-20">
           <h2 className="text-xl text-slate-500">
@@ -50,6 +71,7 @@ export default function Cart() {
         </div>
       ) : (
         <>
+          {/* Cart Items */}
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
             {cartItems.map((item, index) => (
               <div
@@ -61,17 +83,21 @@ export default function Cart() {
                 }`}
               >
                 <div className="flex items-center gap-4">
+                  {/* Checkbox */}
                   <input
                     type="checkbox"
                     checked={selectedItems.includes(
                       item.product_id
                     )}
                     onChange={() =>
-                      toggleItem(item.product_id)
+                      toggleItem(
+                        item.product_id
+                      )
                     }
                     className="w-5 h-5"
                   />
 
+                  {/* Product Info */}
                   <div>
                     <h3 className="font-semibold text-slate-800">
                       {item.product_name}
@@ -83,9 +109,13 @@ export default function Cart() {
                   </div>
                 </div>
 
+                {/* Price + Remove */}
                 <div className="flex items-center gap-6">
                   <span className="font-semibold text-green-600">
-                    {formatCurrency(item.price)}
+                    {formatCurrency(
+                      item.price *
+                        item.quantity
+                    )}
                   </span>
 
                   <button
@@ -103,6 +133,7 @@ export default function Cart() {
             ))}
           </div>
 
+          {/* Footer */}
           <div className="mt-6 bg-white rounded-2xl shadow-sm p-6 flex justify-between items-center">
             <div>
               <p className="text-sm text-slate-500">
@@ -114,10 +145,9 @@ export default function Cart() {
               </h2>
             </div>
 
+            {/* Checkout Button */}
             <button
-              onClick={() =>
-                checkoutSelected(selectedItems)
-              }
+              onClick={handleCheckout}
               disabled={!selectedItems.length}
               className={`px-8 py-3 rounded-xl font-medium text-white transition ${
                 selectedItems.length

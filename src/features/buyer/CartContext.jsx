@@ -4,11 +4,19 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    return JSON.parse(localStorage.getItem("cartItems")) || [];
+    return (
+      JSON.parse(
+        localStorage.getItem("cartItems")
+      ) || []
+    );
   });
 
   const [orders, setOrders] = useState(() => {
-    return JSON.parse(localStorage.getItem("orders")) || [];
+    return (
+      JSON.parse(
+        localStorage.getItem("orders")
+      ) || []
+    );
   });
 
   useEffect(() => {
@@ -66,12 +74,25 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  const removePurchasedItems = (
+    purchasedIds
+  ) => {
+    setCartItems((prev) =>
+      prev.filter(
+        (item) =>
+          !purchasedIds.includes(
+            item.product_id
+          )
+      )
+    );
+  };
+
   const checkoutSelected = (selectedIds) => {
     const itemsToOrder = cartItems.filter((item) =>
       selectedIds.includes(item.product_id)
     );
 
-    if (!itemsToOrder.length) return;
+    if (!itemsToOrder.length) return null;
 
     const newOrder = {
       id: Date.now(),
@@ -86,18 +107,14 @@ export const CartProvider = ({ children }) => {
           sum + item.quantity,
         0
       ),
-      status: "Processing",
+      status: "Pending Payment",
       createdAt: new Date().toLocaleString(),
     };
 
     setOrders((prev) => [newOrder, ...prev]);
 
-    setCartItems((prev) =>
-      prev.filter(
-        (item) =>
-          !selectedIds.includes(item.product_id)
-      )
-    );
+    // DO NOT REMOVE ITEMS HERE
+    return newOrder;
   };
 
   return (
@@ -109,6 +126,7 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         clearCart,
         checkoutSelected,
+        removePurchasedItems,
       }}
     >
       {children}
