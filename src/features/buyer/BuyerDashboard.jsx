@@ -167,6 +167,28 @@ if (!document.getElementById(STYLE_ID)) {
       box-shadow: 0 4px 14px rgba(46,125,82,.18);
     }
     .msg-btn:disabled { opacity: .5; cursor: default; }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 10px 18px;
+      color: #6b7280;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transition: background .18s, border-color .18s, color .18s;
+    }
+    .logout-btn:hover {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #dc2626;
+    }
   `;
   document.head.appendChild(s);
 }
@@ -187,7 +209,6 @@ function getBadge(product) {
   if (product.is_new_harvest)                          return BADGE_CYCLE[1];
   if (product.is_bulk     || name.includes("bulk"))    return BADGE_CYCLE[2];
   if (product.is_verified || cat === "dairy")          return BADGE_CYCLE[3];
-  // deterministic fallback so it varies
   return BADGE_CYCLE[(Number(product.product_id) || 0) % BADGE_CYCLE.length];
 }
 
@@ -289,7 +310,6 @@ function ProductCard({ product, onMessage, chatting, delay = 0 }) {
 
       {/* Card body */}
       <div style={{ padding:"1rem 1.25rem 1.25rem" }}>
-        {/* Product name */}
         <h3 style={{
           margin:"0 0 7px",
           fontSize:16, fontWeight:700,
@@ -300,7 +320,6 @@ function ProductCard({ product, onMessage, chatting, delay = 0 }) {
           {product.product_name}
         </h3>
 
-        {/* Seller */}
         <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:14 }}>
           <div style={{
             width:24, height:24, borderRadius:"50%", flexShrink:0,
@@ -315,9 +334,7 @@ function ProductCard({ product, onMessage, chatting, delay = 0 }) {
           </span>
         </div>
 
-        {/* Price + distance row */}
         <div style={{ display:"flex", alignItems:"flex-end", justifyContent:"space-between" }}>
-          {/* Left: price */}
           <div>
             <p style={{ margin:"0 0 2px", fontSize:11, color:"#9ab89a", fontFamily:"'DM Sans',sans-serif" }}>
               Price per kg
@@ -327,7 +344,6 @@ function ProductCard({ product, onMessage, chatting, delay = 0 }) {
             </p>
           </div>
 
-          {/* Right: distance + view details */}
           <div style={{ textAlign:"right" }}>
             <p style={{
               margin:"0 0 3px",
@@ -335,7 +351,6 @@ function ProductCard({ product, onMessage, chatting, delay = 0 }) {
               fontFamily:"'DM Sans',sans-serif",
               display:"flex", alignItems:"center", gap:3, justifyContent:"flex-end",
             }}>
-              {/* pin icon */}
               <svg width="10" height="13" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 0C2.79 0 1 1.79 1 4c0 3 4 9 4 9s4-6 4-9c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="#9ab89a"/>
               </svg>
@@ -350,7 +365,6 @@ function ProductCard({ product, onMessage, chatting, delay = 0 }) {
           </div>
         </div>
 
-        {/* Message button */}
         <button
           className="msg-btn"
           style={{ marginTop:14 }}
@@ -390,6 +404,13 @@ export default function Marketplace() {
       }
     })();
   }, []);
+
+  // ── Logout ──
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   const filtered = products
     .filter(p => {
@@ -439,34 +460,41 @@ export default function Marketplace() {
               </h1>
             </div>
 
-            <Link to="/chat" style={{
-              display:"flex", alignItems:"center", gap:8,
-              background:"#fff", border:"1.5px solid #c8ddc8",
-              borderRadius:12, padding:"10px 18px",
-              color:"#2e7d52", textDecoration:"none",
-              fontSize:13, fontWeight:600, position:"relative",
-              boxShadow:"0 2px 8px rgba(0,0,0,.06)",
-            }}>
-              💬 Messages
-              {unreadCount > 0 && (
-                <span style={{
-                  position:"absolute", top:-6, right:-6,
-                  background:"#ef4444", color:"#fff",
-                  fontSize:10, fontWeight:700, borderRadius:999,
-                  minWidth:18, height:18, display:"flex",
-                  alignItems:"center", justifyContent:"center", padding:"0 4px",
-                }}>
-                  {unreadCount > 9 ? "9+" : unreadCount}
-                </span>
-              )}
-            </Link>
+            {/* ── Right-side actions: Messages + Logout ── */}
+            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+              <Link to="/chat" style={{
+                display:"flex", alignItems:"center", gap:8,
+                background:"#fff", border:"1.5px solid #c8ddc8",
+                borderRadius:12, padding:"10px 18px",
+                color:"#2e7d52", textDecoration:"none",
+                fontSize:13, fontWeight:600, position:"relative",
+                boxShadow:"0 2px 8px rgba(0,0,0,.06)",
+              }}>
+                💬 Messages
+                {unreadCount > 0 && (
+                  <span style={{
+                    position:"absolute", top:-6, right:-6,
+                    background:"#ef4444", color:"#fff",
+                    fontSize:10, fontWeight:700, borderRadius:999,
+                    minWidth:18, height:18, display:"flex",
+                    alignItems:"center", justifyContent:"center", padding:"0 4px",
+                  }}>
+                    {unreadCount > 9 ? "9+" : unreadCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Logout */}
+              <button className="logout-btn" onClick={handleLogout}>
+                🚪 Logout
+              </button>
+            </div>
           </div>
         </div>
 
         {/* ── Search bar + results count + sort ── */}
         <div style={{ marginBottom:"1.5rem", animation:"fadeUp .5s .07s ease both" }}>
           <div style={{ display:"flex", alignItems:"center", gap:12, flexWrap:"wrap", marginBottom:14 }}>
-            {/* Search */}
             <div style={{ position:"relative", flex:"1 1 260px", maxWidth:460 }}>
               <span style={{ position:"absolute", left:13, top:"50%", transform:"translateY(-50%)", fontSize:14, pointerEvents:"none", color:"#9ab89a" }}>
                 🔍

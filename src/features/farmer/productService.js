@@ -1,5 +1,12 @@
 import api from "../../services/api";
 
+// Farmer's own products dashboard
+export const getMyProducts = async () => {
+  const response = await api.get("/products/mine");
+  return response.data.products;
+};
+
+// Public marketplace
 export const getProducts = async () => {
   const response = await api.get("/products");
   return response.data.products;

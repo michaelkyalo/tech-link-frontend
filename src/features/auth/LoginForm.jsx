@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAuth from "./useAuth";
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  const { login, logout, user } = useAuth(); // 👈 destructure logout and user
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -19,11 +19,26 @@ const LoginForm = () => {
     await login(form);
   };
 
+  // If user is logged in, show a logout button instead of the form
+  if (user) {
+    return (
+      <div className="space-y-4">
+        <p className="text-gray-700">Welcome, {user.name}!</p>
+        <button
+          onClick={logout}
+          className="bg-red-600 text-white px-4 py-2 w-full"
+        >
+          Logout
+        </button>
+      </div>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <input name="name" placeholder="Name" onChange={handleChange} className="border p-2 w-full"/>
-      <input name="email" placeholder="Email" onChange={handleChange} className="border p-2 w-full"/>
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} className="border p-2 w-full"/>
+      <input name="name" placeholder="Name" onChange={handleChange} className="border p-2 w-full" />
+      <input name="email" placeholder="Email" onChange={handleChange} className="border p-2 w-full" />
+      <input name="password" type="password" placeholder="Password" onChange={handleChange} className="border p-2 w-full" />
       <select name="role" onChange={handleChange} className="border p-2 w-full">
         <option value="buyer">Buyer</option>
         <option value="farmer">Farmer</option>
